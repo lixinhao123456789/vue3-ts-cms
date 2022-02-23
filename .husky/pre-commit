@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-#通过eslink来代码检测
+#在提交git时 通过eslink来代码检测 可自定义运行脚本
 npm run lint
