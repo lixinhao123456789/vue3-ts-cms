@@ -1,7 +1,7 @@
 import { App } from "vue"
-import "element-plus/theme-chalk/base.css"
+import "element-plus/theme-chalk/index.css"
 
-import { ElButton } from "element-plus"
+import { ElButton } from "element-plus/lib"
 
 const components = [ElButton]
 

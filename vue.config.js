@@ -23,16 +23,16 @@ module.exports = {
 	// 		}
 	// 	}
 	// }
-	// configureWebpack: (config) => {
-	//   config.resolve.alias = {
-	//     '@': path.resolve(__dirname, 'src'),
-	//     components: '@/components'
-	//   }
-	// }
-	// 3.配置方式三:
-	chainWebpack: (config) => {
-	  config.resolve.alias
-	    .set('@', path.resolve(__dirname, 'src'))
-	    .set('components', '@/components')
+	configureWebpack: (config) => {
+	  config.resolve.alias = {
+	    '@': path.resolve(__dirname, 'src'),
+	    components: '@/components'
+	  }
 	}
+	// 3.配置方式三:
+	// chainWebpack: (config) => {
+	//   config.resolve.alias
+	//     .set('@', path.resolve(__dirname, 'src'))
+	//     .set('components', '@/components')
+	// }
 }
