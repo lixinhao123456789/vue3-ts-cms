@@ -1,28 +1,44 @@
 {
-	"compilerOptions": {
-		"target": "esnext",
-		"module": "esnext",
-		"strict": true,
-		"jsx": "preserve",
-		"importHelpers": true,
-		"moduleResolution": "node",
-		"skipLibCheck": true,
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"sourceMap": true,
-		"baseUrl": ".",
-		"types": ["webpack-env"],
-		"paths": {
-			"@/*": ["src/*"]
-		},
-		"lib": ["esnext", "dom", "dom.iterable", "scripthost"]
-	},
-	"include": [
-		"src/**/*.ts",
-		"src/**/*.tsx",
-		"src/**/*.vue",
-		"tests/**/*.ts",
-		"tests/**/*.tsx"
-	],
-	"exclude": ["node_modules"]
+  "compilerOptions": {
+    // 目标代码(ts -> js(es5/6/7)) 因为我们创建项目时 选择的是babel来转换代码的 而babel转换是根据browserslistrc浏览器来转换的
+    "target": "esnext",
+    // 目标代码需要使用的模块化方案(commonjs require/module.exports/es module import/export) umd 多种模块化
+    "module": "esnext",
+    // 严格一些严格的检查(any)
+    "strict": true,
+    // 对jsx进行怎么样的处理 preserve不转换
+    "jsx": "preserve",
+    // 辅助的导入功能
+    "importHelpers": true,
+    // 按照node的方式去解析模块 import "/index.node"
+    "moduleResolution": "node",
+    // 跳过一些库的类型检测 (axios -> 类型/ lodash -> @types/lodash / 其他的第三方)
+    // import { Person } from 'axios' 一般都设置为true 可能两个库中的类型名一样
+    "skipLibCheck": true,
+    // export default/module.exports = {}
+    // es module 和 commonjs
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    // 要不要生成映射文件(ts -> js)
+    "sourceMap": true,
+    // 文件路径在解析时, 基本url
+    "baseUrl": ".",
+    // 指定具体要解析使用的类型
+    "types": ["webpack-env"],
+    // 路径解析(类似于webpack alias)
+    "paths": {
+      "@/*": ["src/*"],
+      "components/*": ["src/components/*"]
+    },
+    // 可以指定在项目中可以使用哪里库的类型(Proxy/Window/Document)
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
+  "exclude": ["node_modules"]
 }
