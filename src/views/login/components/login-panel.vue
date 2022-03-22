@@ -44,18 +44,18 @@ export default defineComponent({
 		loginPhone
 	},
 	setup() {
-		const isKeepPassword = ref(false)
+		const isKeepPassword = ref(true)
     const accountRef = ref<InstanceType<typeof loginAccount>>()
     const currentTab = ref<string>("account")
     // accountRef可以拿到相应实例中的方法
     // InstanceType构造一个实例类型
 
 		const handleLoginClick = () => {
-			console.log("立即点击",accountRef.value)
+			// console.log("立即点击",accountRef.value)
       if(currentTab.value === "account") {
         accountRef.value?.loginAction(isKeepPassword.value)
       }else {
-        console.log("点击手机登录");
+        // console.log("点击手机登录");
       }
 		}
 

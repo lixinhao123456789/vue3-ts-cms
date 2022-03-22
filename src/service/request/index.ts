@@ -15,7 +15,7 @@ class Request {
 	loading?: LoadingInstance
 
 	constructor(config: MyRequestConfig) {
-		console.log(config)
+		// console.log(config)
 		// 创建instance实例
 		this.instance = axios.create(config)
 		this.showLoading = config.showLoading ?? DEAFULT_LOADING

@@ -10,7 +10,7 @@ export default new Request({
 	interceptors: {
 		requestInterceptor: (config) => {
 			const token = localCache.getCache("token")
-      console.log("token",token);
+      // console.log("token",token);
 			if (token) {
 				config.headers = {
           ...config.headers,

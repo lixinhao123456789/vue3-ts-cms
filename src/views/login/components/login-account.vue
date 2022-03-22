@@ -33,11 +33,11 @@ export default defineComponent({
 		const loginAction = (isKeepPassword: boolean) => {
 			formRef.value?.validate((valid) => {
 				if (valid) {
-					console.log("检验通过", account.name)
+					// console.log("检验通过", account.name)
 					if (isKeepPassword) {
 						localCache.setCache("name", account.name)
 						localCache.setCache("password", account.password)
-						console.log(isKeepPassword)
+						// console.log(isKeepPassword)
 					} else {
 						localCache.deleteCache("name")
 						localCache.deleteCache("password")

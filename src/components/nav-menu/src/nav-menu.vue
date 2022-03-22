@@ -6,7 +6,7 @@
 		</div>
 
 		<el-menu
-			default-active="2"
+			:default-active="defaultValue"
 			class="el-menu-vertical"
 			background-color="#0c2135"
 			:collapse="collapse"
@@ -35,7 +35,10 @@
 						</template>
 						<!-- 遍历里面的item -->
 						<template v-for="subitem in item.children" :key="subitem.id">
-							<el-menu-item :index="subitem.id + ''" @click="handleMenuItemClick(subitem)">
+							<el-menu-item
+								:index="subitem.id + ''"
+								@click="handleMenuItemClick(subitem)"
+							>
 								<i v-if="subitem.icon" :class="subitem.icon"></i>
 								<span>{{ subitem.name }}</span>
 							</el-menu-item>
@@ -43,7 +46,10 @@
 					</el-sub-menu>
 				</template>
 				<template v-else-if="item.type === 2">
-					<el-menu-item :index="item.id + ''" @click="handleMenuItemClick(item)">
+					<el-menu-item
+						:index="item.id + ''"
+						@click="handleMenuItemClick(item)"
+					>
 						<i v-if="item.icon" :class="item.icon"></i>
 						<span>{{ item.name }}</span>
 					</el-menu-item>
@@ -54,10 +60,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue"
+import { computed, defineComponent, ref } from "vue"
 
 import { useStore } from "@/store"
-import { useRouter } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
+
+import { pathMapToMenu } from "@/utils/map-menus"
 
 export default defineComponent({
 	props: {
@@ -69,21 +77,30 @@ export default defineComponent({
 	setup() {
 		// 拿到菜单列表 遍历出来
 		const store = useStore()
-    const router = useRouter()
+		const router = useRouter()
+		const route = useRoute()
 		// 如果不用computed的话 缺少类型检测 store.state.login.userMenus 也可以搞一个计算属性
-		// const userMenus = computed(() => store.state.login.userMenus)
-		const userMenus = store.state.login.userMenus
-		console.log("vuex", userMenus)
-    const handleMenuItemClick = (item: any) => {
-      console.log(item.url);
-      router.push({
-        path: item.url ?? "/not-found"
-      })
-    }
+		const userMenus = computed(() => store.state.login.userMenus)
+		// const userMenus = store.state.login.userMenus
+
+		const currentPath = route.path
+
+		const menu = pathMapToMenu(userMenus.value, currentPath)
+    // console.log("当前的菜单",menu);
+		const defaultValue = ref(menu.id + "")
+
+		// console.log("vuex", userMenus)
+		const handleMenuItemClick = (item: any) => {
+			// console.log(item.url);
+			router.push({
+				path: item.url ?? "/not-found"
+			})
+		}
 
 		return {
 			userMenus,
-      handleMenuItemClick
+			handleMenuItemClick,
+			defaultValue
 		}
 	}
 })

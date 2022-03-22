@@ -29,18 +29,18 @@ const loginModule: Module<ILoginState, IRootState> = {
 
       // 将routes添加到router.main.children
       const routes = mapMenusToRoutes(userMenus)
-      console.log(routes);
+      // console.log(routes);
       routes.forEach(route => {
         router.addRoute("main", route)
       })
-      console.log(router);
+      // console.log(router);
 
     }
 	},
 	getters: {},
 	actions: {
 		async accountLoginAction({ commit }, payload: any) {
-			console.log("执行vuex中登录", payload)
+			// console.log("执行vuex中登录", payload)
 			const data = await accountLogin(payload)
 			const { id, token } = data.data
 			// 将token存储在浏览器中
@@ -54,7 +54,7 @@ const loginModule: Module<ILoginState, IRootState> = {
       // 获取用户权限
       const userMenusResult = await getUserMenusByRoleId(userInfo.data.role.id)
       const userMenus = userMenusResult.data
-      console.log("用户权限",userMenus);
+      // console.log("用户权限",userMenus);
       commit("changeUserMenus", userMenus)
       localCache.setCache("userMenus", userMenus)
 

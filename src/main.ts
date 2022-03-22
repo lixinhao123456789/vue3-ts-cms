@@ -19,8 +19,9 @@ const app = createApp(App)
 // console.log(process.env.VUE_APP_BASE_URL);
 // console.log(process.env.VUE_APP_BASE_NAME);
 
-// 初始化vuex中数据
+// 初始化vuex中数据 注册动态路由
 setupStore()
+
 
 // app.use(ElementPlus)
 app.use(globalRegister)
